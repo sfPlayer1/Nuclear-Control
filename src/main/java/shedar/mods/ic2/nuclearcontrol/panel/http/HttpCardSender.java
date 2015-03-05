@@ -46,7 +46,9 @@ public class HttpCardSender {
 
 	public void send() {
 		try {
-			executor.submit(new Request(new URL(DATA_URL_TEMPLATE), unsent));
+			if ( unsent.size() > 0 ) {
+				executor.submit(new Request(new URL(DATA_URL_TEMPLATE), unsent));
+			}
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RejectedExecutionException e) {
